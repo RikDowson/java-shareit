@@ -8,10 +8,6 @@ import ru.practicum.shareit.user.User;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * TODO Sprint add-controllers.
- */
-
 @Data
 @AllArgsConstructor
 public class Item {
@@ -22,6 +18,7 @@ public class Item {
     @NotNull
     @NotBlank
     private String description;     // развёрнутое описание;
+    @NotNull
     private Boolean available;      // статус о том, доступна или нет вещь для аренды;
     private User owner;             // владелец вещи;
     private ItemRequest request;    // если вещь была создана по запросу другого пользователя, то в этом

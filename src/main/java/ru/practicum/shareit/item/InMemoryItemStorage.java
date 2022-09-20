@@ -58,7 +58,7 @@ public class InMemoryItemStorage implements ItemStorage {
     @Override
     public Item addItem(Long userId, Item item) {
         item.setOwner(userService.getUserById(userId));
-        item.setId(getItemId());
+        item.setId(nextItemId++);
         items.put(item.getId(), item);
         log.info("InMemoryItemStorage.addItem: item {} " +
                 "успешно добавлено в хранилище", item.getId());
@@ -104,8 +104,4 @@ public class InMemoryItemStorage implements ItemStorage {
         nextItemId = 0;
     }
 
-    private Long getItemId() {
-        nextItemId += 1;
-        return nextItemId;
-    }
 }
