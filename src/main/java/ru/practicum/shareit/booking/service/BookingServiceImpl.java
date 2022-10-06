@@ -65,8 +65,7 @@ public class BookingServiceImpl implements BookingService {
         validateUpdateBookingStatus(user, item, booking);
         if (approved) {
             booking.setStatus(BookingStatus.APPROVED);
-        }
-        else {
+        } else {
             booking.setStatus(BookingStatus.REJECTED);
         }
         return bookingRepository.save(booking);
