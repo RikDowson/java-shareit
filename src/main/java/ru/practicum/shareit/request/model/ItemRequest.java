@@ -16,21 +16,24 @@ import java.time.LocalDateTime;
  */
 
 @Entity
-@Table(name = "item_requests")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "item_requests")
 public class ItemRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
     private String description;
+
     @ManyToOne
     @JoinColumn(name = "requester_id")
     private User requester;
+
     @NotNull
     private LocalDateTime created = LocalDateTime.now();
 

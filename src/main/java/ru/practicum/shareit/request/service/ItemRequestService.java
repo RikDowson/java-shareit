@@ -5,7 +5,6 @@ import ru.practicum.shareit.request.model.ItemRequest;
 import java.util.List;
 
 public interface ItemRequestService {
-
     ItemRequest getItemRequestById(Long ownerId, Long itemRequestId);
 
     ItemRequest createItemRequest(Long ownerId, ItemRequest itemRequest);

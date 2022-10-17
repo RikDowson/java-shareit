@@ -12,14 +12,19 @@ import java.util.List;
 /**
  * TODO Sprint add-item-requests.
  */
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class ItemRequestDto {
     Long id;
+
     @NotBlank
     String description;
+
     Long requesterId;
+
     LocalDateTime created;
+
     List<ItemDto> items;
 }

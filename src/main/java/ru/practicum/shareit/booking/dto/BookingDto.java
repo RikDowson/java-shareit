@@ -1,8 +1,8 @@
 package ru.practicum.shareit.booking.dto;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.Value;
-import lombok.experimental.NonFinal;
 import ru.practicum.shareit.booking.model.BookingStatus;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
@@ -10,6 +10,8 @@ import ru.practicum.shareit.user.model.User;
 import java.time.LocalDateTime;
 
 @Value
+@Getter
+@Setter
 public class BookingDto {
 
     Long id;
@@ -17,7 +19,5 @@ public class BookingDto {
     LocalDateTime end;
     Item item;
     User booker;
-    @NonFinal
-    @Setter
     BookingStatus status;
 }

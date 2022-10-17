@@ -75,6 +75,7 @@ public class BookingServiceImpl implements BookingService {
 
         List<Booking> bookingList = new ArrayList<>();
         BookingState bookingState;
+
         try {
             bookingState = BookingState.valueOf(state);
         } catch (IllegalArgumentException ex) {
@@ -112,6 +113,7 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookingList = new ArrayList<>();
         BookingState bookingState;
         Pageable pageable = PageRequest.of(from / size, size);
+
         try {
             bookingState = BookingState.valueOf(state);
         } catch (IllegalArgumentException ex) {
@@ -170,7 +172,7 @@ public class BookingServiceImpl implements BookingService {
             throw new ValidationException("Эта вещь не доступна для бронирования");
         }
         if (booking.getEnd().isBefore(booking.getStart())) {
-            throw new ValidationException("Окончание бронирования не может быть раньше начала бронирования");
+            throw new ValidationException("Срок окончания бронирования не может быть раньше начала бронирования");
         }
     }
 }

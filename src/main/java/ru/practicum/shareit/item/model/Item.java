@@ -22,16 +22,21 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     private Long id;                    // уникальный идентификатор вещи;
+
     @NotBlank
     private String name;                // краткое название;
+
     @NotBlank
     private String description;         // развёрнутое описание;
+
     @Column(name = "is_available")
     private Boolean available;          // статус о том, доступна или нет вещь для аренды;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;                 // владелец вещи;
+
     @ManyToOne
     @JoinColumn(name = "request_id")
     private ItemRequest request;        // запрос
