@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
 import ru.practicum.shareit.exception.NotFoundException;
+import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.request.repository.ItemRequestRepository;
 import ru.practicum.shareit.request.service.ItemRequestService;
@@ -94,7 +95,7 @@ public class ItemRequestServiceTest {
         Mockito.when(userService.getUserById(Mockito.anyLong())).thenReturn(null);
         Mockito.when(itemRequestRepository.findAllByRequesterIdOrderByCreatedDesc(1L))
                 .thenReturn(List.of(itemRequest));
-        List<ItemRequest> itemRequestList = itemRequestService.getAllRequestsByOwnerId(1L);
+        List<ItemRequestDto> itemRequestList = itemRequestService.getAllRequestsByOwnerId(1L);
         Assertions.assertNotNull(itemRequestList);
         Assertions.assertEquals(itemRequest, itemRequestList.get(0));
     }
@@ -104,7 +105,7 @@ public class ItemRequestServiceTest {
         Mockito.when(userService.getUserById(Mockito.anyLong())).thenReturn(null);
         Mockito.when(itemRequestRepository.findAllByRequesterIdOrderByCreatedDesc(1L))
                 .thenReturn(Collections.emptyList());
-        List<ItemRequest> itemRequestList = itemRequestService.getAllRequestsByOwnerId(1L);
+        List<ItemRequestDto> itemRequestList = itemRequestService.getAllRequestsByOwnerId(1L);
         Assertions.assertNotNull(itemRequestList);
         Assertions.assertEquals(0, itemRequestList.size());
     }

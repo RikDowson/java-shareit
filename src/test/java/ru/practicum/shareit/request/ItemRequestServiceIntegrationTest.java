@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
+import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.request.service.ItemRequestService;
 import ru.practicum.shareit.user.model.User;
@@ -62,7 +63,7 @@ public class ItemRequestServiceIntegrationTest {
         entityManager.persist(newItemRequest1);
         entityManager.persist(newItemRequest2);
         entityManager.persist(newItemRequest3);
-        List<ItemRequest> itemRequestList = itemRequestService.getAllRequestsByOwnerId(2L);
+        List<ItemRequestDto> itemRequestList = itemRequestService.getAllRequestsByOwnerId(2L);
         Assertions.assertNotNull(itemRequestList);
         Assertions.assertEquals(2, itemRequestList.size());
     }

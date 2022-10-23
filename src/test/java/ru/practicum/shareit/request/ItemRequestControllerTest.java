@@ -111,7 +111,7 @@ public class ItemRequestControllerTest {
 
     @Test
     void getAllRequestsByOwnerIdTestOk() throws Exception {
-        Mockito.when(itemRequestService.getAllRequestsByOwnerId(1L)).thenReturn(List.of(itemRequest));
+        Mockito.when(itemRequestService.getAllRequestsByOwnerId(1L)).thenReturn(List.of(itemRequestDto));
         Mockito.when(itemService.getItemsByRequestId(Mockito.anyLong())).thenReturn(List.of(item));
         mockMvc.perform(get("/requests")
                         .header("X-Sharer-User-Id", 1L)

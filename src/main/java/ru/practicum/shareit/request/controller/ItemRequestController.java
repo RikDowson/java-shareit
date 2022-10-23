@@ -12,6 +12,7 @@ import ru.practicum.shareit.request.service.ItemRequestService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,12 +26,9 @@ public class ItemRequestController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<ItemRequestDto> getAllRequestsByOwnerId(@RequestHeader("X-Sharer-User-Id") Long ownerId) {
-        List<ItemRequestDto> requestList = itemRequestService.getAllRequestsByOwnerId(ownerId)
-                .stream().map(ItemRequestMapper::toItemRequestDto).collect(Collectors.toList());
-        requestList.forEach(request -> request.setItems(itemService.getItemsByRequestId(request.getId())
-                .stream().map(ItemMapper::toItemDto).collect(Collectors.toList())));
-        return requestList;
+    public List<ItemRequestDto> getAllRequestsByOwnerId(@RequestHeader("X-Sharer-User-Id") @NotNull Long ownerId) {
+
+        return itemRequestService.getAllRequestsByOwnerId(ownerId);
     }
 
     @PostMapping
@@ -41,10 +39,9 @@ public class ItemRequestController {
     }
 
     @GetMapping("/all")
-    public List<ItemRequestDto> getAllRequestsByPage(
-            @RequestHeader("X-Sharer-User-Id") Long ownerId,
-            @RequestParam(defaultValue = "0") @Min(0) Integer from,
-            @RequestParam(defaultValue = "10") @Min(1) Integer size) {
+    public List<ItemRequestDto> getAllRequestsByPage(@RequestHeader("X-Sharer-User-Id") Long ownerId,
+                                                     @RequestParam(defaultValue = "0") @Min(0) Integer from,
+                                                     @RequestParam(defaultValue = "10") @Min(1) Integer size) {
         List<ItemRequestDto> requestDtos = itemRequestService.getAllRequestsByPage(ownerId, from, size).stream()
                 .map(ItemRequestMapper::toItemRequestDto).collect(Collectors.toList());
         requestDtos.forEach(request -> request.setItems(itemService.getItemsByRequestId(request.getId())
